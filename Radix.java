@@ -52,8 +52,8 @@ public class Radix {
  				betterData.extend(buckets[l]);
  			}
  		}
-
- 		
-
+ 		for (int m = 0; m < data.length; m++) { //empty out our now fully sorted linkedlist back into OG
+ 			data[m] = betterData.remove(0);
+ 		}
 	}
 }
