@@ -1,6 +1,7 @@
 import java.util.*;
 
 public class Radix {
+	
 
 	public static void main(String[] args) {
 		
@@ -37,7 +38,7 @@ public class Radix {
 				numPasses++;
 			}
 			for (int k = 0; k < numPasses; k++) { //we now have the number of passes, and a linkedlist of our array. At this point we need to start sorting numbers into buckets for each iteration of the K loop
-				Node node = betterData.start;
+				Node<Integer> node = betterData.start;
 				while (node.next() != null) {
 					int nodeValue = (int) node.getData();
 					if (nodeValue >= 0) {
@@ -54,7 +55,7 @@ public class Radix {
 				}
 			}
 			for (int m = 0; m < betterData.size(); m++) { //empty out our now fully sorted linkedlist back into OG
-				data[m] = betterData.remove(0);
+				data[m] = betterData.removeFirst();
 			}
 		}
 	}

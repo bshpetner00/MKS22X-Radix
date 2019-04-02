@@ -38,7 +38,7 @@ public class MyLinkedList<E> {
 		}
 		return output + "}";
 	}
-	public E removeFront() { //removes front
+	public E removeFirst() { //removes front
 		E removed = start.getData();
 		if (length <= 1) {
 			start = null;
@@ -56,44 +56,16 @@ public class MyLinkedList<E> {
 		if (nuu.length != 0) {
 			if (this.length != 0) {
 				this.end.setNext(nuu.start);
+				nuu.start.setPrev(this.end);
+				this.length += nuu.length;
+				this.end = nuu.end;
+				nuu.length = 0;
 			}
 			else {
 				this.start = nuu.start;
+				this.end = nuu.end;
+				this.length = nuu.length; 
 			}
-			nuu.start.setPrev(this.end);
-			this.length += nuu.length;
-			this.end = nuu.end;
-			nuu.length = 0;
-		}
-	}
-	public class Node {
-		private E data;
-		private Node next,prev;
-		public Node(E d) {
-			data = d;
-		}
-		public E getData() {
-			return data;
-		}
-		public Node next() {
-			return next;
-		}
-		public Node prev() {
-			return prev;
-		}
-		public E setData(E d) {
-			E old = data;
-			data = d;
-			return old;
-		}
-		public void setNext(Node n) {
-			next = n;
-		}
-		public void setPrev(Node p) {
-			prev = p;
-		}
-		public String toString() {
-			return "" + data;
 		}
 	}
 }
