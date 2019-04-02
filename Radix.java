@@ -19,7 +19,7 @@ public class Radix {
 	@SuppressWarnings("unchecked")
 	public static void radixsort(int[]data) {
 		if (data.length != 0) {
-			MyLinkedList[] buckets = new MyLinkedList[20]; //bucket holder, array of linkedlists
+			MyLinkedList<Integer>[] buckets = new MyLinkedList[20]; //bucket holder, array of linkedlists
 			MyLinkedList betterData = new MyLinkedList(); //data holder, normal linkedlist
 			for (int i = 0; i < buckets.length; i++) { //initialize buckets
 				buckets[i] = new MyLinkedList(); 
@@ -53,7 +53,7 @@ public class Radix {
 					betterData.extend(buckets[l]);
 				}
 			}
-			for (int m = 0; m < data.length; m++) { //empty out our now fully sorted linkedlist back into OG
+			for (int m = 0; m < betterData.size(); m++) { //empty out our now fully sorted linkedlist back into OG
 				data[m] = betterData.remove(0);
 			}
 		}
