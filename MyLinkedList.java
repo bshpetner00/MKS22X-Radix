@@ -39,7 +39,7 @@ public class MyLinkedList<E> {
 		return output + "}";
 	}
 	public E removeFirst() { //removes front
-		E removed = start.getData();
+		E removed = (E) start.getData();
 		if (length <= 1) {
 			start = null;
 			end = null;
