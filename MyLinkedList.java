@@ -1,6 +1,6 @@
 public class MyLinkedList {
-	private Integer length;
-	private Node<Integer> start,end;
+	public Integer length;
+	public Node<Integer> start,end;
 	public MyLinkedList() {
 		length = 0;
 	}
@@ -125,7 +125,7 @@ public class MyLinkedList {
 		if (length <= 1) {
 			start = null;
 			end = null;
-			
+
 		}
 		Integer removed = this.get(i);
 		if (i == 0) {
@@ -165,8 +165,6 @@ public class MyLinkedList {
 			this.length += nuu.length;
 			this.end = nuu.end;
 			nuu.length = 0;
-			nuu.start = null;
-			nuu.end = null;
 		}
 	}
 }

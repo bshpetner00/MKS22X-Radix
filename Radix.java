@@ -37,17 +37,23 @@ public class Radix {
  		}
  		for (int k = 0; k < numPasses; k++) { //we now have the number of passes, and a linkedlist of our array. At this point we need to start sorting numbers into buckets for each iteration of the K loop
  			Node node = betterData.start;
- 			while (node.hasNext()) {
- 				int nodeValue = node.getData();
+ 			while (node.next() != null) {
+ 				int nodeValue = (int) node.getData();
  				if (nodeValue >= 0) {
- 					buckets[k+10].add(getDigit(nodeValue,k));
+ 					buckets[k+10].add(nodeValue);
  				}
  				else {
- 					buckets[k-9].add(getDigit(nodeValue,k));
+ 					buckets[k-9].add(nodeValue);
  				}
+ 				node = node.next();
+ 			}
+ 			betterData = new MyLinkedList(); //once we have our sorted buckets, we re-merge
+ 			for (int l = 0; l < 20; l++) {
+ 				betterData.extend(buckets[l]);
  			}
  		}
- 		//once we have our sorted buckets, we re-merge
+
+ 		
 
 	}
 }
