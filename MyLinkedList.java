@@ -122,6 +122,11 @@ public class MyLinkedList {
 		if (i > length-1 || i < 0) {
 			throw new IndexOutOfBoundsException("Given index not found");
 		}
+		if (length <= 1) {
+			start = null;
+			end = null;
+			
+		}
 		Integer removed = this.get(i);
 		if (i == 0) {
 			start = start.next();
