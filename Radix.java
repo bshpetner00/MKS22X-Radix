@@ -4,7 +4,7 @@ public class Radix {
 	
 
 	public static void main(String[] args) {
-		int[] data = {-9,0,-8,9,-7,11,-8,-2,7,3,3,4,5,6,2,-13,-1,0,4,-5,0,3};
+		int[] data = {-9,0,-8,9,-7,11,-8,-2,7,3,3,4,5,6,2,-13,-1,0,4,-5,0,3,1000,20,-450,20,-20,-21,-61,78,2345,123562,22,78};
 		//System.out.println(""+getDigit(19,0));
 		//System.out.println(""+getDigit(-19,0));
 		//System.out.println(Arrays.toString(data));
@@ -15,7 +15,7 @@ public class Radix {
 	private static int getDigit(int val, int column) {
 		int res = val / (int) Math.pow(10, column) % 10; //take the number, divide it by the factor of ten needed to isolate the chosen column, and then mod that value by 10 to get the final remainder. 
 		if (val < 0) {
-			return res*-1;
+			return res*-1; //needs a positive result no matter what
 		}
 		return res;
 	}
