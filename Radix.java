@@ -4,24 +4,27 @@ public class Radix {
 	
 
 	public static void main(String[] args) {
-		
+		int[] data = {-9,0,-8,9,-7,11,-8,-2,7,3,3,4,5,6,2,-13,-1,0,4,-5,0,3};
+		//System.out.println(""+getDigit(19,0));
+		//System.out.println(""+getDigit(-19,0));
+		//System.out.println(Arrays.toString(data));
+		radixsort(data);
+		System.out.print(Arrays.toString(data));
 	}
 
 	private static int getDigit(int val, int column) {
-		String fake = "" + val;
-		if (fake.length()-(1+column) >= 0) {
-			char digit = fake.charAt(fake.length()-(1+column));
-			int dig = Character.getNumericValue(digit);
-			return dig;	
+		int res = val / (int) Math.pow(10, column) % 10; //take the number, divide it by the factor of ten needed to isolate the chosen column, and then mod that value by 10 to get the final remainder. 
+		if (val < 0) {
+			return res*-1;
 		}
-		return 0;
+		return res;
 	}
 
 	@SuppressWarnings("unchecked")
 	public static void radixsort(int[]data) {
 		if (data.length != 0) {
 			MyLinkedList<Integer>[] buckets = new MyLinkedList[20]; //bucket holder, array of linkedlists
-			MyLinkedList betterData = new MyLinkedList(); //data holder, normal linkedlist
+			MyLinkedList<Integer> betterData = new MyLinkedList(); //data holder, normal linkedlist
 			for (int i = 0; i < buckets.length; i++) { //initialize buckets
 				buckets[i] = new MyLinkedList(); 
 			}
@@ -39,22 +42,26 @@ public class Radix {
 			}
 			for (int k = 0; k < numPasses; k++) { //we now have the number of passes, and a linkedlist of our array. At this point we need to start sorting numbers into buckets for each iteration of the K loop
 				Node<Integer> node = betterData.start;
-				while (node.next() != null) {
+				for (int noder = 0; noder < data.length; noder++) {
 					int nodeValue = (int) node.getData();
 					if (nodeValue >= 0) {
-						buckets[k+10].add(nodeValue);
+						buckets[getDigit(nodeValue,k)+10].add(nodeValue);
 					}
 					else {
-						buckets[k-9].add(nodeValue);
+						buckets[9-getDigit(nodeValue,k)].add(nodeValue);
 					}
 					node = node.next();
 				}
-				betterData = new MyLinkedList(); //once we have our sorted buckets, we re-merge
+				betterData.clear();
 				for (int l = 0; l < 20; l++) {
 					betterData.extend(buckets[l]);
 				}
+				for (int i = 0; i < buckets.length; i++) { //initialize buckets
+					buckets[i] = new MyLinkedList(); 
+				}
 			}
-			for (int m = 0; m < betterData.size(); m++) { //empty out our now fully sorted linkedlist back into OG
+			//System.out.println()
+			for (int m = 0; m < data.length; m++) { //empty out our now fully sorted linkedlist back into OG
 				data[m] = betterData.removeFirst();
 			}
 		}
